@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import GeneStorageContract from "./contracts/GeneStorage.json";
 import getWeb3 from "./getWeb3";
 
+
 import "./App.css";
 
 import { 
@@ -12,8 +13,10 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// pages
-import IndexPage from "./pages/index";
+//Pages
+import UploadPage from "./pages/uploadPage";
+import AuthorPage from "./pages/authorPage";
+
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -36,6 +39,7 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
+      // this.setState({ web3, accounts, contract: instance }, this.runExample);
       this.setState({ web3, accounts, contract: instance });
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -46,18 +50,31 @@ class App extends Component {
     }
   };
 
+  // runExample = async () => {
+  //   const { accounts, contract } = this.state;
 
+  //   // Stores a given value, 5 by default.
+  //   await contract.methods.set(5).send({ from: accounts[0] });
+
+  //   // Get the value from the contract to prove it worked.
+  //   const response = await contract.methods.get().call();
+
+  //   // Update state with the result.
+  //   this.setState({ storageValue: response });
+  // };
 
   render() {
+    if (!this.state.web3) {
+      return <div>Loading Web3, accounts, and contract...</div>;
+    }
     return (
       <Router>
         <Routes>
-          <Route path="/" element={<IndexPage passaccount={this.state.accounts} passcontract={this.state.contract}/>}></Route>
+          <Route path="/" element={<UploadPage account={this.state.accounts} contract={this.state.contract}/>}></Route>
+          <Route path="/author" element={<AuthorPage account={this.state.accounts} contract={this.state.contract}/>}></Route>
         </Routes>
       </Router>
-      
     );
-    
   }
 }
 
