@@ -1,35 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import io  from "socket.io-client";
-//const SERVER = "http://127.0.0.1:5000";
 
 
-function App() {
+import HomePage from './home/home.js';
+import ChatPage from './chat/chat.jsx';
+import TestPage from './test';
 
-  //var socket = io(SERVER);
-  var socket = io.connect('/');
-  socket.on('connect', () => {
-    console.log("i'm connected with back-end")
-  });
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+var socket = io.connect('/');
+socket.on('connect', () => {
+  console.log("i'm connected with back-end")
+});
+
+socket.on('message', (data) => {
+  console.log("incoming message:" + data);
+});
+
+class App extends React.Component{
+  render() {
+    console.log("app");
+
+    return (
+      <Router>
+          <Routes>
+            <Route path="/" element={<HomePage socket={socket}/>}></Route>
+            <Route path="/test" element={<TestPage />}></Route>
+            <Route path="/chat/:roomname/:username" element={<ChatPage socket={socket}/>} />
+          </Routes>
+        
+      </Router>
+    );
+  }
 }
 
 export default App;

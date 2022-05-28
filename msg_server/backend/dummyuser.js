@@ -2,16 +2,20 @@ const users = [];
 
 // add user to specific chatroom
 function join_user(id, username, room){
+  console.log("---join_user---");
   const newUser = {id, username, room};
+  console.log("new user: " + newUser.id + " " + newUser.username + " " + newUser.room);
   users.push(newUser);
-  console.log("users" + users);
-
+  console.log("length: " + users.length);
+  console.log("users: " + users[users.length-1].id + " " + users[users.length-1].username);
+  console.log("---join_user---");
   return newUser;
 }
 
-// ge particular user id to return
+// get particular user id to return
 function get_current_user(id){
-  return users.findIndex((newUser) => newUser.id === id);
+  let userIndex = users.findIndex((newUser) => newUser.id === id);
+  return users[userIndex];
 }
 
 // when user disconnect -> object deleted from array

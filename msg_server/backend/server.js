@@ -16,12 +16,14 @@ var server = app.listen(PORT, () => {
 
 const io = socket(server);
 
-io.on('connection', client => {
+io.on('connection', socket => {
 
-  client.on('join', ({username, roomname}) => {
+  socket.on('join', ({username, roomname}) => {
+    console.log("new user " + username + " joined room " + roomname);
     
     // create user
     const newUser = dummy.join_user(socket.id, username, roomname);
+    console.log("newUser: " + username + " " + roomname);
 
     console.log("id=" + socket.id);
     socket.join(newUser.room);
@@ -39,35 +41,50 @@ io.on('connection', client => {
       username: newUser.username,
       text: `${newUser.username} has joined the chat`,
     });
+  });
 
-    // user sends message
-    socket.on('chat', (text) => {
-      const newUser = dummy.get_current_user(socket.id);
+  // user sends message
+  socket.on('chat', (text) => {
+    console.log("new chat msg:" + text);
 
-      io.to(newUser.room).emit('message', {
-        userId: newUser.id,
-        username: newUser.username,
-        text: text
-      });
+    const user = dummy.get_current_user(socket.id);
+    console.log("chat user id:" + user.id);
+    console.log("chat user room:" + user.room);
+
+    // send to self
+    socket.emit('message', {
+      userId: user.id,
+      username: user.username,
+      text: text
     });
-
-    // when user exits room
-    socket.on('disconnect', () => {
-      // delete user from array of users
-      const rmUser = dummy.user_disconnect(socket.id);
-
-      if(rmUser){
-        io.to(rmUser.room).emit('message', {
-          userId: rmUser.id,
-          username: rmUser.username,
-          text: `${rmUser.username} has left chat`
-        });
-      }
+    // send to others in
+    socket.in(user.room).emit('message', {
+      userId: user.id,
+      username: user.username,
+      text: text
     });
   });
 
-  client.on('disconnect', () => {
+  // when user exits room
+  socket.on('disconnect', () => {
+    // delete user from array of users
     console.log("disconnected");
+    const rmUser = dummy.user_disconnect(socket.id);
+    
+
+    if(rmUser){
+      console.log("disconnect user id:" + rmUser.id);
+
+      socket.to(rmUser.room).emit('message', {
+        userId: rmUser.id,
+        username: rmUser.username,
+        text: `${rmUser.username} has left chat`
+      });
+    }
   });
+
+  // socket.on('disconnect', () => {
+  //   console.log("disconnected");
+  // });
 });
 
