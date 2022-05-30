@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GeneStorageContract from "./contracts/GeneStorage.json";
 import getWeb3 from "./getWeb3";
+import io from "socket.io-client";
 
 
 import "./App.css";
@@ -16,7 +17,17 @@ import {
 //Pages
 import UploadPage from "./pages/uploadPage";
 import AuthorPage from "./pages/authorPage";
+import MsgHomePage from "./pages/msgHome";
+import MsgChatPage from "./pages/msgChat";
 
+var socket = io.connect('/');
+socket.on('connect', () => {
+  console.log("i'm connected with back-end")
+});
+
+socket.on('message', (data) => {
+  console.log("incoming message:" + data);
+});
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -72,6 +83,8 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<UploadPage account={this.state.accounts} contract={this.state.contract}/>}></Route>
           <Route path="/author" element={<AuthorPage account={this.state.accounts} contract={this.state.contract}/>}></Route>
+          <Route path="/msg_home" element={<MsgHomePage socket={socket}/>}></Route>
+          <Route path="/msg_home/chat/:roomname/:username" element={<MsgChatPage socket={socket}/>}></Route>
         </Routes>
       </Router>
     );
