@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { TextField, Button, Stack } from '@mui/material';
+import "./chat.scss";
 
 function ChatPage({ socket }) {
   const [text, setText] = useState("");
@@ -62,14 +63,14 @@ function ChatPage({ socket }) {
           {msg.map((i) => {
             if (i.userId === i.fromUserId) {
               return (
-                <div className='message'>
+                <div className='incoming-msg-left own-msg'>
                   <p>{i.text}</p>
                   <span>{i.fromUsername}</span>
                 </div>
               );
             } else {
               return (
-                < div className='message mess-right' >
+                < div className='incoming-msg-left' >
                   <p>{i.text}</p>
                   <span>{i.fromUsername}</span>
                 </div>

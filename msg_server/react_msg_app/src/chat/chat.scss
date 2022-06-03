@@ -1,0 +1,92 @@
+.chat-msg {
+  height: 70%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+
+  .message {
+    margin-left: 0px;
+    max-width: 220px;
+    padding-left: 0.5rem;
+  
+    p {
+      font-size: 1rem;
+      background-color: #5a794e;
+      padding: 1rem;
+      border-radius: 0px 10px 10px 10px;
+      font-weight: 300;
+      color: #ffffff;
+    }
+  
+    span {
+      font-size: 0.6rem;
+      font-weight: 200;
+      color: #b4b6be;
+      padding-left: 0.5rem;
+    }
+  }
+
+  .incoming-msg-left {
+    margin-left: 0px;
+    max-width: 220px;
+    padding-left: 0.5rem;
+  
+    p {
+      font-size: 1rem;
+      background-color: #5a794e;
+      padding: 1rem;
+      border-radius: 0px 10px 10px 10px;
+      font-weight: 300;
+      color: #ffffff;
+    }
+  
+    span {
+      font-size: 0.6rem;
+      font-weight: 200;
+      color: #b4b6be;
+      padding-left: 0.5rem;
+    }
+  }
+  .own-msg{
+    margin-left: auto;
+    margin-right: 0px;
+    display: flex;
+    flex-direction: column;
+    max-width: 220px;
+    padding-right: 0.5rem;
+    p {
+      text-align: end;
+      border-radius: 10px 0px 10px 10px;
+      background-color: rgb(219, 132, 132);
+      color: white;
+    }
+    span {
+      width: 100%;
+      text-align: end;
+      padding-left: 0rem;
+      padding-right: 0.5rem;
+    }
+  }
+  
+  .mess-right {
+    margin-left: auto;
+    margin-right: 0px;
+    display: flex;
+    flex-direction: column;
+    max-width: 220px;
+    padding-right: 0.5rem;
+    p {
+      text-align: end;
+      border-radius: 10px 0px 10px 10px;
+      background-color: rgb(219, 132, 132);
+      color: white;
+    }
+    span {
+      width: 100%;
+      text-align: end;
+      padding-left: 0rem;
+      padding-right: 0.5rem;
+    }
+  }
+}
