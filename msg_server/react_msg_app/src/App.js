@@ -4,11 +4,11 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import io  from "socket.io-client";
 
 
-import HomePage from './home/home.js';
-import ChatPage from './chat/chat.jsx';
+import HomePage from './pages/home.js';
+import ChatPage from './pages/chat.jsx';
 import TestPage from './test';
-import SendKeysPage from './chat/send_keys';
-
+import SendKeysPage from './pages/send_keys';
+import RSApage from './pages/rsa';
 
 var socket = io.connect('/');
 socket.on('connect', () => {
@@ -30,6 +30,7 @@ class App extends React.Component{
             <Route path='/keys/:roomname/:username' element={<SendKeysPage socket={socket}/>}></Route>
             <Route path="/test" element={<TestPage />}></Route>
             <Route path="/chat/:roomname/:username" element={<ChatPage socket={socket}/>} />
+            <Route path='rsa' element={<RSApage />}/>
           </Routes>
         
       </Router>
