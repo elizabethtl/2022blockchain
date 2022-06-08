@@ -3,7 +3,9 @@
 const JSEncrypt = require('nodejs-jsencrypt').default;
 const crypt = new JSEncrypt({default_key_size: 512});
 const priveteKey = crypt.getPrivateKey();
+console.log("private key: " + priveteKey);
 const publicKey = crypt.getPublicKey();
+console.log("public key: " + publicKey);
 
 // https://ithelp.ithome.com.tw/articles/10185008
 var RSA = {

@@ -25,7 +25,10 @@ var decrypt = function() {
   });
 }
 rawStr="ABC";
+
+console.log("rawStr: " + rawStr);
 encresult=RSA.encrypt(rawStr);
+console.log("enc result: " + encresult);
 console.log(encresult);
 decrypt();
 
