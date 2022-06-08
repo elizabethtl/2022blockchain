@@ -46,6 +46,10 @@ function HomePage({ socket }) {
         <Link to={`/chat/${roomname}/${username}`} >
           <Button variant='contained' onClick={sendData}>Join</Button>
         </Link>
+
+        <Link to={`/keys/${roomname}/${username}`} >
+          <Button variant='contained' onClick={sendData}>Join(keys)</Button>
+        </Link>
       </Stack>
     </form>
   )

@@ -32,8 +32,8 @@ function ChatPage({ socket }) {
       console.log("msg array");
       console.log(msg);
 
-      setCount(count+1);
-      
+      setCount(count + 1);
+
     });
   }, []);
 
@@ -46,57 +46,61 @@ function ChatPage({ socket }) {
   }
 
   return (
-    <div className='chat'>
-      <Stack
-        direction='column'
-        justifyContent='center'
-        alignItems='center'
-        spacing={1}
-      >
-        <div className='user-name'>
-          <h2>
-            {username} <span style={{ fontSize: '0.7rem' }}>in {roomname}</span>
-          </h2>
-        </div>
+    <Stack direction="row" spacing={2}>
+      <div className='chat'>
+        <Stack
+          direction='column'
+          justifyContent='center'
+          alignItems='center'
+          spacing={1}
+        >
+          <div className='user-name'>
+            <h2>
+              {username} <span style={{ fontSize: '0.7rem' }}>in {roomname}</span>
+            </h2>
+          </div>
 
-        <div className='chat-msg'>
-          {msg.map((i) => {
-            if (i.userId === i.fromUserId) {
-              return (
-                <div className='incoming-msg-left own-msg'>
-                  <p>{i.text}</p>
-                  <span>{i.fromUsername}</span>
-                </div>
-              );
-            } else {
-              return (
-                < div className='incoming-msg-left' >
-                  <p>{i.text}</p>
-                  <span>{i.fromUsername}</span>
-                </div>
-              );
-            }
-          })}
-        </div>
-
-        <div className='send'>
-          <TextField
-            placeholder='enter message'
-            value={text}
-            label='message'
-            onChange={(e) => setText(e.target.value)}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
-                sendData();
+          <div className='chat-msg'>
+            {msg.map((i) => {
+              if (i.userId === i.fromUserId) {
+                return (
+                  <div className='incoming-msg-left own-msg'>
+                    <p>{i.text}</p>
+                    <span>{i.fromUsername}</span>
+                  </div>
+                );
+              } else {
+                return (
+                  < div className='incoming-msg-left' >
+                    <p>{i.text}</p>
+                    <span>{i.fromUsername}</span>
+                  </div>
+                );
               }
-            }}
-          />
-        </div>
+            })}
+          </div>
 
-        <Button onClick={() => sendData()}>Send</Button>
-      </Stack>
+          <div className='send'>
+            <TextField
+              placeholder='enter message'
+              value={text}
+              label='message'
+              onChange={(e) => setText(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  sendData();
+                }
+              }}
+            />
+          </div>
 
-    </div>
+          <Button onClick={() => sendData()}>Send</Button>
+        </Stack>
+
+      </div>
+      <></>
+    </Stack>
+
   )
 }
 

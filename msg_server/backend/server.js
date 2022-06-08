@@ -19,8 +19,7 @@ const io = socket(server);
 io.on('connection', socket => {
 
   socket.on('join', ({username, roomname}) => {
-    console.log("new user " + username + " joined room " + roomname);
-    
+ 
     // create user
     const newUser = dummy.join_user(socket.id, username, roomname);
     console.log("newUser: " + username + " " + roomname);
@@ -63,6 +62,24 @@ io.on('connection', socket => {
       username: user.username,
       text: text
     });
+  });
+
+  socket.on('sk', (text) => {
+    const user = dummy.get_current_user(socket.id);
+    console.log('sk: ' + text);
+    console.log("sent from user: " + user.id);
+
+    // send to others in room
+    socket.in(user.room).emit('pass_sk', text);
+  });
+
+  socket.on('pk', (text) => {
+    const user = dummy.get_current_user(socket.id);
+    console.log('pk: ' + text);
+    console.log("sent from user: " + user.id);
+
+    // send to others in room
+    socket.in(user.room).emit('pass_pk', text);
   });
 
   // when user exits room
