@@ -46,6 +46,11 @@ function MsgHomePage({ socket }) {
         <Link to={`/msg_home/chat/${roomname}/${username}`} >
           <Button variant='contained' onClick={sendData}>Join</Button>
         </Link>
+
+        <Link to={`/msg_home/keys/${roomname}/${username}`} >
+          <Button variant='contained' onClick={sendData}>Join(keys)</Button>
+        </Link>
+
       </Stack>
     </form>
   )

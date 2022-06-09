@@ -19,6 +19,7 @@ import UploadPage from "./pages/uploadPage";
 import AuthorPage from "./pages/authorPage";
 import MsgHomePage from "./pages/msgHome";
 import MsgChatPage from "./pages/msgChat";
+import SendKeysPage from "./pages/send_keys";
 
 var socket = io.connect('/');
 socket.on('connect', () => {
@@ -85,6 +86,7 @@ class App extends Component {
           <Route path="/author" element={<AuthorPage account={this.state.accounts} contract={this.state.contract}/>}></Route>
           <Route path="/msg_home" element={<MsgHomePage socket={socket}/>}></Route>
           <Route path="/msg_home/chat/:roomname/:username" element={<MsgChatPage socket={socket}/>}></Route>
+          <Route path="/msg_home/keys/:roomname/:username" element={<SendKeysPage socket={socket}/>}></Route>
         </Routes>
       </Router>
     );
