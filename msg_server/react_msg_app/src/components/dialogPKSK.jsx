@@ -11,8 +11,7 @@ export default function DialogPKSK({receivePK, handleSendSK}) {
   const [open, setOpen] = React.useState(false);
   const [sk, setSK] = React.useState('');
   const pk = receivePK;
-  console.log("received pk: ");
-  console.log(pk);
+  console.log("received pk -" + pk + '-');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,6 +25,10 @@ export default function DialogPKSK({receivePK, handleSendSK}) {
     console.log("sk is " + sk);
     if (sk !== '') {
       setOpen(false);
+      
+      // encrypt sk with the pk received here
+      // add stuff
+
       handleSendSK(sk);
     }
   }

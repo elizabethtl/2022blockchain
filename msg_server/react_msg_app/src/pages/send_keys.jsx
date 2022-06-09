@@ -6,8 +6,10 @@ import {
   Stack
 } from '@mui/material';
 
-import DialogPK from './dialogPK';
-import DialogPKSK from './dialogPKSK';
+import DialogPK from '../components/dialogPK';
+import DialogPKSK from '../components/dialogPKSK';
+import AlertPK from '../components/alertPK';
+import AlertSK from '../components/alertSK';
 
 function SendKeysPage({ socket }) {
 
@@ -63,6 +65,9 @@ function SendKeysPage({ socket }) {
           {username} <span style={{ fontSize: '0.7rem' }}>in {roomname}</span>
         </h2>
       </div>
+
+      <AlertPK receivePK={pk}/>
+      <AlertSK receiveSK={sk}/>
 
       <DialogPK handleSendPK={sendPK} />
 
