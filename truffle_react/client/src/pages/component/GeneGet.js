@@ -2,64 +2,64 @@ import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { alpha, styled } from "@mui/material/styles";
+import { alpha, styled } from '@mui/material/styles';
+import { CssTextField } from '../style/style.js'
 
-const GeneGet = ({onType}) => {
+const GeneGet = ({ onType }) => {
+    const [id, setId] = useState('')
     const [key, setKey] = useState('')
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        if (!key) {alert("請輸入private key!"); return;}
-        onType({key});
+        if (!id) { alert("請輸入Locus!"); return; }
+        if (!key) { alert("請輸入private key!"); return; }
+        onType({ id, key });
 
     }
 
-    const CssTextField = styled(TextField)({
-        "& label.Mui-focused": {
-          color: "yellow"
-        },
-        "& .MuiInput-underline:after": {
-          borderBottomColor: "green"
-        },
-        "& .MuiOutlinedInput-root": {
-          "& fieldset": {
-            borderColor: "red"
-          },
-          "&:hover fieldset": {
-            borderColor: "yellow"
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "green"
-          }
-        }
-      });
-    
+
     return (
         <form className='add-form' onSubmit={onSubmit}>
             <Stack
-                direction="row"
+                direction="column"
                 justifyContent="center"
-                alignItems="center"
-                spacing={2}
+                alignItems="start"
+                spacing={1}
             >
-                <h4>Private Key</h4>
-                <br/>
                 <div className='form-control'>
                     <CssTextField
-                        className='textfield'
                         id="outlined-basic"
-                        label=""
+                        label="Locus"
                         type="text"
                         autoComplete="current-password"
-                        placeholder=""
-                        // color="#FF7F50"
-                        value={key}
-                        onChange={(e) => setKey(e.target.value)}
+                        placeholder="請輸入您的Locus"
+                        value={id}
+                        onChange={(e) => setId(e.target.value)}
                     />
                 </div>
-                <br/>
-                <Button variant="contained" type='submit' size="large" >送出</Button>
+                <br />
+                <div className='form-control'>
+                    <Stack
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        spacing={2}
+                    >
+                        <CssTextField
+                            id="outlined-basic"
+                            label="private key"
+                            type="text"
+                            autoComplete="current-password"
+                            placeholder="請輸入您的private key"
+                            value={key}
+                            onChange={(e) => setKey(e.target.value)}
+                        />
+                        <Button variant="contained" type='submit' size="large" >送出</Button>
+
+                    </Stack>
+                    
+                </div>
             </Stack>
 
         </form>

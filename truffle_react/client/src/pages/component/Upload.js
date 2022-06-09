@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import {CssTextField} from '../style/style.js'
+
 
 const Upload = ({onType}) => {
     const [id, setId] = useState('')
+    const [key, setKey] = useState('')
     const [gene, setGene] = useState('')
 
     const onSubmit = (e) => {
@@ -12,7 +15,7 @@ const Upload = ({onType}) => {
 
         if (!id) { alert('請輸入Locus!'); return; }
         if (!gene) { alert('請輸入sequence!'); return; }
-        onType({id, gene})
+        onType({id, key, gene})
     }
 
     
@@ -25,11 +28,11 @@ const Upload = ({onType}) => {
                 spacing={1}
             >
                 <div className='form-control'>
-                    <TextField
+                    <CssTextField
                         id="outlined-basic"
                         label="Locus"
                         type="text"
-                        style={{width: 500}}
+                        style={{maxWidth: 500, minWidth: 500}}
                         autoComplete="current-password"
                         placeholder='輸入您的Locus'
                         multiline
@@ -39,7 +42,21 @@ const Upload = ({onType}) => {
                 </div>
                 <br/>
                 <div className='form-control'>
-                    <TextField
+                    <CssTextField
+                        id="outlined-basic"
+                        label="private key"
+                        type="text"
+                        style={{width: 500}}
+                        autoComplete="current-password"
+                        placeholder='輸入您的private key'
+                        multiline
+                        value={key}
+                        onChange={(e) => setKey(e.target.value)}
+                    />
+                </div>
+                <br/>
+                <div className='form-control'>
+                    <CssTextField
                         id="outlined-basic"
                         label="Sequence"
                         type="text"
