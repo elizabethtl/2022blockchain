@@ -6,26 +6,26 @@ import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function AlertSK({ receiveSK }) {
+export default function AlertGK({ receiveGK }) {
 
-  const [sk, setSK] = React.useState('');
+  const [gk, setGK] = React.useState('');
 
   React.useEffect(() => {
-    setSK(receiveSK);
+    setSK(receiveGK);
   });
 
-  if (receiveSK !== "") {
-    console.log("received secret key -" + receiveSK + "-");
+  if (receiveGK !== "") {
+    console.log("received secret key -" + receiveGK + "-");
     return (
       <Alert severity='success'>
-        you have received the secret key!
+        you have received the gene key!
       </Alert>
     )
   } else {
     console.log("did not recieve secret key");
     return (
       <Alert severity='warning'>
-        yet to receive secret key!
+        yet to receive gene key!
       </Alert>
     )
   }

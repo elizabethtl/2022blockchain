@@ -9,12 +9,13 @@ import {
 import DialogPK from './component/dialogPK';
 import DialogPKSK from './component/dialogPKSK';
 import AlertPK from './component/alertPK';
-import AlertSK from './component/alertSK';
+import AlertGK from './component/alertGK';
 
 function SendKeysPage({ socket }) {
 
   const [pk, setPK] = useState('');
   const [sk, setSK] = useState('');
+  const [gk, setGK] = useState('');
 
   let params = useParams();
   let username = params.username;
@@ -30,10 +31,11 @@ function SendKeysPage({ socket }) {
       setPK(data);
     });
 
-    socket.on('pass_sk', (data) => {
-      console.log("pass sk");
+    socket.on('pass_gk', (data) => {
+      console.log("pass gk");
       console.log(data);
-      setSK(data);
+
+      setGK(data);
     });
   }, []);
 
@@ -47,7 +49,7 @@ function SendKeysPage({ socket }) {
 
   const sendGK = (input_gk) => {
     console.log("gk is " + input_gk);
-    if (input_sk !== '') {
+    if (input_gk !== '') {
       //setSK(input_sk);
       socket.emit('gk', input_gk);
     }
@@ -67,12 +69,12 @@ function SendKeysPage({ socket }) {
       </div>
 
       <AlertPK receivePK={pk}/>
-      <AlertSK receiveSK={sk}/>
+      <AlertGK receiveGK={sk}/>
 
       <DialogPK handleSendPK={sendPK} />
 
-      <DialogPKSK receivePK={pk} handleSendSK={sendGK} />
-      <Button>傳送我的私鑰</Button>
+      <DialogPKSK receivePK={pk} handleSendGK={sendGK} />
+      <Button>解開基因鑰</Button>
     </Stack>
   )
 }
