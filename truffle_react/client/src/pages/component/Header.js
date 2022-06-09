@@ -8,49 +8,54 @@ import { colors, Stack } from '@mui/material';
 
 
 const Header = (props) => {
-    const [value, setValue] = React.useState('upload');
+  const [value, setValue] = React.useState('upload');
 
-    const goToUpload = () => {
-        console.log('to uploadPage');
-        window.location.href = "../";
-    }
-    const goToAuthor = () => {
-        console.log('to authorPage');
-        window.location.href = "../author";
-    }
-
-
-    return (
-        <header className='header'>
-
-            <h3 style={{color: 'white'}}><b>個人基因醫療隱私區塊鏈</b></h3>
-            <h1 style={{color: 'white'}}>{props.title}</h1>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    '& > *': {
-                        m: 1,
-                    },
-                }}
-            >
-                <div>
-                    <Button style={{ color: 'white' }} onClick={goToUpload}><b>基因上傳</b></Button>
-                    <Button style={{ color: 'white' }} onClick={goToAuthor}><b>基因授權與資料</b></Button>
-                </div>
-            </Box>
+  const goToUpload = () => {
+    console.log('to uploadPage');
+    window.location.href = "../";
+  }
+  const goToAuthor = () => {
+    console.log('to authorPage');
+    window.location.href = "../author";
+  }
+  const goToMsg = () => {
+    console.log('to MsgPage');
+    window.location.href = "../msg_home";
+  }
 
 
-        </header >
-    )
+  return (
+    <header className='header'>
+
+      <h3 style={{ color: 'white' }}><b>個人基因醫療隱私區塊鏈</b></h3>
+      <h1 style={{ color: 'white' }}>{props.title}</h1>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          '& > *': {
+            m: 1,
+          },
+        }}
+      >
+        <div>
+          <Button style={{ color: 'white' }} onClick={goToUpload}><b>基因上傳</b></Button>
+          <Button style={{ color: 'white' }} onClick={goToAuthor}><b>取得基因資料</b></Button>
+          <Button style={{ color: 'white' }} onClick={goToMsg}><b>傳輸公私鑰</b></Button>
+        </div>
+      </Box>
+
+
+    </header >
+  )
 }
 
 Header.defaultProps = {
-    title: '',
+  title: '',
 }
 
 Header.protoType = {
-    title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 export default Header

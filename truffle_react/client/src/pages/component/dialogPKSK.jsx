@@ -6,10 +6,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { JSEncrypt } from 'jsencrypt';
 
-export default function DialogPKSK({receivePK, handleSendSK}) {
+export default function DialogPKSK({receivePK, handleSendGK}) {
   const [open, setOpen] = React.useState(false);
-  const [sk, setSK] = React.useState('');
+  const [gene_key, setGeneKey] = React.useState('');
   const pk = receivePK;
   console.log("received pk -" + pk + '-');
 
@@ -22,33 +23,40 @@ export default function DialogPKSK({receivePK, handleSendSK}) {
   };
 
   const handleSend = () => {
-    console.log("sk is " + sk);
-    if (sk !== '') {
+    console.log("gene key is " + gene_key);
+    if (gene_key !== '') {
       setOpen(false);
       
-      // encrypt sk with the pk received here
+      // encrypt with the pk received here
       // add stuff
+      const encrypt = new JSEncrypt({default_key_size: 512});
+      encrypt.setPublicKey(pk);
 
-      handleSendSK(sk);
+      // encrypt geneKey
+      var encrypted_gene_key = encrypt.encrypt(gene_key);
+
+
+
+      handleSendGK(encrypted_gene_key);
     }
   }
 
   return (
     <div>
       <Button onClick={handleClickOpen}>
-        整合公鑰私鑰
+        整合公鑰以及基因鑰
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>整合公鑰私鑰</DialogTitle>
+        <DialogTitle>整合公鑰以及基因鑰</DialogTitle>
         <DialogContent>
           <DialogContentText>{(pk !== '') ?  `公鑰：${pk}` : `尚未得到公鑰`}</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            placeholder='請輸入私鑰'
-            value={sk}
-            label='私鑰'
-            onChange={(e) => setSK(e.target.value)}
+            placeholder='請輸入基因鑰'
+            value={gene_key}
+            label='基因鑰'
+            onChange={(e) => setGeneKey(e.target.value)}
           />
         </DialogContent>
         <DialogActions>

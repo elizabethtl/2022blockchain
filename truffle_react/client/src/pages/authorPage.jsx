@@ -43,7 +43,7 @@ const AuthorPage = ({ account, contract }) => {
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'flex-start',
+                    alignItems: 'center',
                     backgroundColor: 'white',
                     borderRadius: '12px',
                     boxShadow: 2,
@@ -51,12 +51,8 @@ const AuthorPage = ({ account, contract }) => {
                     margin: '50px',
                 }}>
                 <br />
-                <Stack
-                    direction="row"
-                    alignItems="flex-start"
-                    spacing={2}
-                >
-                    <Box
+                
+                    {/* <Box
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -72,7 +68,7 @@ const AuthorPage = ({ account, contract }) => {
 
                         <Author onType={authorSummit} />
 
-                    </Box>
+                    </Box> */}
 
                     <Box
                         sx={{
@@ -106,7 +102,6 @@ const AuthorPage = ({ account, contract }) => {
                         </Stack>
 
                     </Box>
-                </Stack>
 
             </Box>
 

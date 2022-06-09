@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { TextField, Button, Stack } from '@mui/material';
+import { TextField, Button, Stack, Box } from '@mui/material';
+import Header from "./component/Header";
 //import "./home.scss";
 
 function MsgHomePage({ socket }) {
@@ -21,38 +22,57 @@ function MsgHomePage({ socket }) {
 
 
   return (
-    <form className='homepage'>
-      <Stack
-        direction='column'
-        justifyContent='center'
-        alignItems='center'
-        spacing={1}
-      >
-        <h1>welcome to the chat app</h1>
+    <div className="container">
+      <Header title='基因授權與資料' />
 
-        <TextField
-          placeholder="username"
-          label='username'
-          value={username}
-          onChange={(e) => setusername(e.target.value)}
-        />
-        <TextField
-          placeholder="roomname"
-          label='roomname'
-          value={roomname}
-          onChange={(e) => setroomname(e.target.value)}
-        />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          backgroundColor: 'white',
+          borderRadius: '12px',
+          boxShadow: 2,
+          padding: '20px',
+          margin: '50px',
+        }}>
 
-        <Link to={`/msg_home/chat/${roomname}/${username}`} >
+        <form className='homepage'>
+          <Stack
+            direction='column'
+            justifyContent='center'
+            alignItems='center'
+            spacing={1}
+          >
+
+            <TextField
+              placeholder="username"
+              label='username'
+              value={username}
+              onChange={(e) => setusername(e.target.value)}
+            />
+
+            <TextField
+              placeholder="roomname"
+              label='roomname'
+              value={roomname}
+              onChange={(e) => setroomname(e.target.value)}
+            />
+
+            {/* <Link to={`/msg_home/chat/${roomname}/${username}`} >
           <Button variant='contained' onClick={sendData}>Join</Button>
-        </Link>
+        </Link> */}
 
-        <Link to={`/msg_home/keys/${roomname}/${username}`} >
-          <Button variant='contained' onClick={sendData}>Join(keys)</Button>
-        </Link>
+            <Link to={`/msg_home/keys/${roomname}/${username}`} >
+              <Button variant='contained' onClick={sendData}>Join</Button>
+            </Link>
 
-      </Stack>
-    </form>
+          </Stack>
+        </form>
+      </Box>
+
+
+    </div>
   )
 }
 

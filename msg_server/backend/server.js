@@ -64,13 +64,16 @@ io.on('connection', socket => {
     });
   });
 
-  socket.on('sk', (text) => {
+  socket.on('gk', (text) => {
     const user = dummy.get_current_user(socket.id);
-    console.log('sk: ' + text);
+    console.log('gk: ' + text);
     console.log("sent from user: " + user.id);
 
     // send to others in room
-    socket.in(user.room).emit('pass_sk', text);
+    socket.in(user.room).emit('pass_gk', text);
+
+    // send to people other than sender
+    //socket.broadcast.emit('pass_sk', text);
   });
 
   socket.on('pk', (text) => {
@@ -80,6 +83,9 @@ io.on('connection', socket => {
 
     // send to others in room
     socket.in(user.room).emit('pass_pk', text);
+  
+    // send to people other than sender
+    //socket.broadcast.emit('pass_pk', text);
   });
 
   // when user exits room

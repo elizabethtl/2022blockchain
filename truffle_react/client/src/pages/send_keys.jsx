@@ -45,11 +45,11 @@ function SendKeysPage({ socket }) {
     }
   }
 
-  const sendSK = (input_sk) => {
-    console.log("sk is " + input_sk);
+  const sendGK = (input_gk) => {
+    console.log("gk is " + input_gk);
     if (input_sk !== '') {
       //setSK(input_sk);
-      socket.emit('sk', input_sk);
+      socket.emit('gk', input_gk);
     }
   }
 
@@ -71,7 +71,7 @@ function SendKeysPage({ socket }) {
 
       <DialogPK handleSendPK={sendPK} />
 
-      <DialogPKSK receivePK={pk} handleSendSK={sendSK} />
+      <DialogPKSK receivePK={pk} handleSendSK={sendGK} />
       <Button>傳送我的私鑰</Button>
     </Stack>
   )
