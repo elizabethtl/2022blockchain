@@ -6,7 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function AlertSK({ receiveSK }){
+export default function AlertSK({ receiveSK }) {
 
   const [sk, setSK] = React.useState('');
 
@@ -14,10 +14,10 @@ export default function AlertSK({ receiveSK }){
     setSK(receiveSK);
   });
 
-  if(receiveSK !== ""){
+  if (receiveSK !== "") {
     console.log("received secret key -" + receiveSK + "-");
     return (
-    <Alert severity='success'>
+      <Alert severity='success'>
         you have received the secret key!
       </Alert>
     )
