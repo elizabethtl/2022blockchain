@@ -1,11 +1,15 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import {
+  Button,
+  Box,
+  TextField,
+  Snackbar,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
+} from '@mui/material';
 
 export default function DialogPK({ handleSendPK }) {
   const [open, setOpen] = React.useState(false);
@@ -32,18 +36,33 @@ export default function DialogPK({ handleSendPK }) {
       <Button onClick={handleClickOpen}>
         傳送我的公鑰
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog 
+        open={open} 
+        onClose={handleClose}
+        fullWidth='true'
+        maxWidth='false'>
         <DialogTitle>傳送公鑰</DialogTitle>
         <DialogContent>
           <DialogContentText>傳送公鑰給使用者</DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            placeholder='請輸入公鑰'
-            value={pk}
-            label='公鑰'
-            onChange={(e) => setPK(e.target.value)}
-          />
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              m: 'auto',
+              width: '100%',
+            }}
+          >
+            <TextField
+              autoFocus
+              margin="dense"
+              fullWidth='true'
+              multiline='true'
+              placeholder='請輸入公鑰'
+              value={pk}
+              label='公鑰'
+              onChange={(e) => setPK(e.target.value)}
+            />
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>取消</Button>
