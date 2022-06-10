@@ -51,16 +51,11 @@ export default function DialogPKSK({ receivePK, handleSendGK }) {
         fullWidth='true'
         maxWidth='false'>
         <DialogTitle>整合公鑰以及基因鑰</DialogTitle>
-        <DialogContent>
-          <DialogContentText>{(pk !== '') ? `公鑰：${pk}` : `尚未得到公鑰`}</DialogContentText>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              m: 'auto',
-              width: '100%',
-            }}
-          >
+        <DialogContent maxWidth='false'>
+          <DialogContentText>
+            {(pk !== '') ? `公鑰：${pk}` : `尚未得到公鑰`}
+            </DialogContentText>
+          
             <TextField
               autoFocus
               margin="dense"
@@ -71,7 +66,6 @@ export default function DialogPKSK({ receivePK, handleSendGK }) {
               label='基因鑰'
               onChange={(e) => setGeneKey(e.target.value)}
             />
-          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>取消</Button>
