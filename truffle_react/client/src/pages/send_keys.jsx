@@ -56,9 +56,6 @@ function SendKeysPage({ socket }) {
     }
   }
 
-  const sendDecryptedGK = (input_decrypted_gk) => {
-
-  }
 
   return (
     <Stack
@@ -79,8 +76,7 @@ function SendKeysPage({ socket }) {
       <DialogPK handleSendPK={sendPK} />
 
       <DialogPKSK receivePK={pk} handleSendGK={sendGK} />
-      <Button>解開基因鑰</Button>
-      <DialogDecryptGK receiveGK={gk} handleSendDecryptedGK={sendDecryptedGK}/>
+      <DialogDecryptGK receiveGK={gk}/>
 
     </Stack>
   )

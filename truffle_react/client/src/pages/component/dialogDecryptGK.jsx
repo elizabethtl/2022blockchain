@@ -1,15 +1,18 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import {Button, 
+        TextField, 
+        Snackbar,
+        Dialog,
+        DialogActions,
+        DialogContent,
+        DialogContentText,
+        DialogTitle} from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { JSEncrypt } from 'jsencrypt';
 
-export default function DialogDecryptGK({ receiveGK, handleSendDecryptedGK }) {
+export default function DialogDecryptGK({ receiveGK }) {
   const [open, setOpen] = React.useState(false);
+  const [snackbar, setSnackbar] = React.useState(false);
   const [sk, setSK] = React.useState('');
   const [decrypted_gene_key, setDecryptedGeneKey] = React.useState('');
   const gk = receiveGK;
@@ -27,6 +30,11 @@ export default function DialogDecryptGK({ receiveGK, handleSendDecryptedGK }) {
     setDecryptedGeneKey(uncrypted);
   }
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(decrypted_gene_key);
+    setSnackbar(true);
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -34,6 +42,7 @@ export default function DialogDecryptGK({ receiveGK, handleSendDecryptedGK }) {
   const handleClose = () => {
     setOpen(false);
   };
+
 
   return (
     <div>
@@ -43,19 +52,35 @@ export default function DialogDecryptGK({ receiveGK, handleSendDecryptedGK }) {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>解開基因鑰</DialogTitle>
         <DialogContent>
-          <DialogContentText>{(gk !== '') ? `基因鑰：${gk}` : `尚未得到基因鑰`}</DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            placeholder='請輸入你的私鑰'
-            value={sk}
-            label='私鑰'
-            onChange={(e) => setSK(e.target.value)}
-          />
+          {(decrypted_gene_key === '') ?
+            <div>
+              <DialogContentText>{(gk !== '') ? `基因鑰：${gk}` : `尚未得到基因鑰`}</DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                placeholder='請輸入你的私鑰'
+                value={sk}
+                label='私鑰'
+                onChange={(e) => setSK(e.target.value)}
+              />
+            </div>
+            :
+            <div>
+              <DialogContentText>{`得到基因鑰：${decrypted_gene_key}`}</DialogContentText>
+              <Button onClick={copyToClipboard}><ContentCopyIcon /></Button>
+              <Snackbar
+                open={snackbar}
+                autoHideDuration={3000}
+                onClose={handleClose}
+                message="已複製基因鑰"
+              />
+            </div>
+          }
+
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>取消</Button>
-          <Button onClick={decrypt}>解密</Button>
+          <Button onClick={decrypt}>{(decrypted_gene_key === '') ? `解密` : `完成`}</Button>
         </DialogActions>
       </Dialog>
     </div>
