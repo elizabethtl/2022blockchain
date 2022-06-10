@@ -25,7 +25,8 @@ code {
 
 
 .container {
-  background-color: coral;
+  /* background-color: coral; */
+  background-color: white;
   justify-content: center;
   align-items: center;
   /* padding: 50px; */

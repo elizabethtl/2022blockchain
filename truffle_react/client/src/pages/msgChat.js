@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { TextField, Button, Stack } from '@mui/material';
+import Header from './component/Header';
 
 function MsgChatPage({ socket }) {
   const [text, setText] = useState("");
@@ -46,6 +47,7 @@ function MsgChatPage({ socket }) {
 
   return (
     <div className='chat'>
+      <Header title='傳輸公私鑰'/>
       <Stack
         direction='column'
         justifyContent='center'

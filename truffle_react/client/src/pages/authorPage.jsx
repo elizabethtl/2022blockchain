@@ -4,13 +4,11 @@ import { Button, Snackbar, TextField } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Header from "./component/Header";
-import Author from "./component/Author"
 import GeneGet from "./component/GeneGet"
 import { Stack, TextareaAutosize } from "@mui/material";
 import { Encode, Decode } from "../encrypt/simple_encrypt.js"
-import BootstrapButton from "./style/color_button";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import CssTextField from "./style/color_textfield";
+
 
 
 
@@ -59,7 +57,7 @@ const AuthorPage = ({ account, contract }) => {
 
     return (
         <div className="container">
-            <Header title='基因授權與資料' />
+            <Header title='取得基因資料' />
 
 
 
@@ -98,16 +96,8 @@ const AuthorPage = ({ account, contract }) => {
                             // },
                         }}
                     >
-                        {/* <TextareaAutosize
-                            style={{ resize: "none", minWidth: "400px", minHeight: "200px" }}
-                            value={gene}
-                            inputProps={
-                                { readOnly: true, }
-                            }
-                        >
-                        </TextareaAutosize> */}
 
-                        <CssTextField
+                        <TextField
                             style={{ minWidth: "400px", minHeight: "200px" }}
                             value={gene}
                             inputProps={
@@ -116,9 +106,8 @@ const AuthorPage = ({ account, contract }) => {
                             multiline
                             rows={8}
                         >
-                            <Button onClick={copyToClipboard}><ContentCopyIcon /></Button>
 
-                        </CssTextField>
+                        </TextField>
 
                         <Button onClick={copyToClipboard}><ContentCopyIcon /></Button>
 

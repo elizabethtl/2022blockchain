@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import CssTextField from '../style/color_textfield.js'
-import BootstrapButton from '../style/color_button.js';
 
 
 const Upload = ({onType}) => {
@@ -29,7 +27,7 @@ const Upload = ({onType}) => {
                 spacing={1}
             >
                 <div className='form-control'>
-                    <CssTextField
+                    <TextField
                         id="outlined-basic"
                         label="Locus"
                         type="text"
@@ -43,7 +41,7 @@ const Upload = ({onType}) => {
                 </div>
                 <br/>
                 <div className='form-control'>
-                    <CssTextField
+                    <TextField
                         id="outlined-basic"
                         label="private key"
                         type="text"
@@ -57,7 +55,7 @@ const Upload = ({onType}) => {
                 </div>
                 <br/>
                 <div className='form-control'>
-                    <CssTextField
+                    <TextField
                         id="outlined-basic"
                         label="Sequence"
                         type="text"
@@ -71,7 +69,7 @@ const Upload = ({onType}) => {
                     />
                 </div>
                 <br />
-                <BootstrapButton variant="contained" type='submit' size="large" >送出</BootstrapButton>
+                <Button variant="contained" type='submit' size="large" >送出</Button>
             </Stack>
         </form>
     )

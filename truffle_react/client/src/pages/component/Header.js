@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { colors, Stack } from '@mui/material';
-
+import { Link } from 'react-router-dom'
 
 
 const Header = (props) => {
@@ -12,15 +12,15 @@ const Header = (props) => {
 
   const goToUpload = () => {
     console.log('to uploadPage');
-    window.location.href = "../";
+    // window.location.href = "../";
   }
   const goToAuthor = () => {
     console.log('to authorPage');
-    window.location.href = "../author";
+    // window.location.href = "../author";
   }
   const goToMsg = () => {
     console.log('to MsgPage');
-    window.location.href = "../msg_home";
+    // window.location.href = "../msg_home";
   }
 
 
@@ -40,9 +40,21 @@ const Header = (props) => {
         }}
       >
         <div>
-          <Button style={{ color: 'white' }} onClick={goToUpload}><b>基因上傳</b></Button>
+          {/* <Button style={{ color: 'white' }} onClick={goToUpload}><b>基因上傳</b></Button>
           <Button style={{ color: 'white' }} onClick={goToAuthor}><b>取得基因資料</b></Button>
-          <Button style={{ color: 'white' }} onClick={goToMsg}><b>傳輸公私鑰</b></Button>
+          <Button style={{ color: 'white' }} onClick={goToMsg}><b>傳輸公私鑰</b></Button> */}
+          <Link to={'/'} style={{ textDecoration: 'none' }}>
+            <Button style={{ color: 'white' }} onClick={goToUpload}><b>基因上傳</b></Button>
+          </Link>
+
+          <Link to={'/author'} style={{ textDecoration: 'none' }}>
+            <Button style={{ color: 'white' }} onClick={goToAuthor}><b>取得基因資料</b></Button>
+          </Link>
+
+          <Link to={'/msg_home'} style={{ textDecoration: 'none' }}>
+            <Button style={{ color: 'white' }} onClick={goToMsg}><b>傳輸公私鑰</b></Button>
+          </Link>
+
         </div>
       </Box>
 

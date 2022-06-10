@@ -3,8 +3,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { alpha, styled } from '@mui/material/styles';
-import CssTextField from '../style/color_textfield.js'
-import BootstrapButton from '../style/color_button.js';
+
+
 
 const GeneGet = ({ onType }) => {
     const [id, setId] = useState('')
@@ -29,7 +29,7 @@ const GeneGet = ({ onType }) => {
                 spacing={1}
             >
                 <div className='form-control'>
-                    <CssTextField
+                    <TextField
                         id="outlined-basic"
                         label="Locus"
                         type="text"
@@ -47,7 +47,7 @@ const GeneGet = ({ onType }) => {
                         alignItems="center"
                         spacing={2}
                     >
-                        <CssTextField
+                        <TextField
                             id="outlined-basic"
                             label="private key"
                             type="text"
@@ -56,7 +56,7 @@ const GeneGet = ({ onType }) => {
                             value={key}
                             onChange={(e) => setKey(e.target.value)}
                         />
-                        <BootstrapButton variant="contained" type='submit' size="large" >送出</BootstrapButton>
+                        <Button variant="contained" type='submit' size="large" >送出</Button>
 
                     </Stack>
                     

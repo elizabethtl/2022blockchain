@@ -11,6 +11,7 @@ import DialogPKSK from './component/dialogPKSK';
 import AlertPK from './component/alertPK';
 import AlertGK from './component/alertGK';
 import DialogDecryptGK from './component/dialogDecryptGK';
+import Header from './component/Header';
 
 function SendKeysPage({ socket }) {
 
@@ -58,27 +59,30 @@ function SendKeysPage({ socket }) {
 
 
   return (
-    <Stack
-      direction='column'
-      justifyContent='center'
-      alignItems='center'
-      spacing={1}>
+    <div >
+      <Header title='傳輸公私鑰' />
+      <Stack
+        direction='column'
+        justifyContent='center'
+        alignItems='center'
+        spacing={1}>
 
-      <div className='user-name'>
-        <h2>
-          {username} <span style={{ fontSize: '0.7rem' }}>in {roomname}</span>
-        </h2>
-      </div>
+        <div className='user-name'>
+          <h2>
+            {username} <span style={{ fontSize: '0.7rem' }}>in {roomname}</span>
+          </h2>
+        </div>
 
-      <AlertPK receivePK={pk}/>
-      <AlertGK receiveGK={gk}/>
+        <AlertPK receivePK={pk} />
+        <AlertGK receiveGK={gk} />
 
-      <DialogPK handleSendPK={sendPK} />
+        <DialogPK handleSendPK={sendPK} />
 
-      <DialogPKSK receivePK={pk} handleSendGK={sendGK} />
-      <DialogDecryptGK receiveGK={gk}/>
+        <DialogPKSK receivePK={pk} handleSendGK={sendGK} />
+        <DialogDecryptGK receiveGK={gk} />
 
-    </Stack>
+      </Stack>
+    </div>
   )
 }
 

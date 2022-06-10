@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { TextField, Button, Stack, Box } from '@mui/material';
 import Header from "./component/Header";
+import { height } from "@mui/material/node_modules/@mui/system";
 //import "./home.scss";
 
 function MsgHomePage({ socket }) {
@@ -23,7 +24,7 @@ function MsgHomePage({ socket }) {
 
   return (
     <div className="container">
-      <Header title='基因授權與資料' />
+      <Header title='傳輸公私鑰' />
 
       <Box
         sx={{
@@ -31,45 +32,60 @@ function MsgHomePage({ socket }) {
           flexDirection: 'column',
           alignItems: 'center',
           backgroundColor: 'white',
-          borderRadius: '12px',
-          boxShadow: 2,
           padding: '20px',
           margin: '50px',
-        }}>
+        }}
+        >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            boxShadow: 2,
+            padding: '20px',
+            margin: '50px',
+            width: '300px',
+            height: '200px'
+          }}>
 
-        <form className='homepage'>
-          <Stack
-            direction='column'
-            justifyContent='center'
-            alignItems='center'
-            spacing={1}
-          >
+          <form className='homepage'>
+            <Stack
+              direction='column'
+              justifyContent='center'
+              alignItems='center'
+              spacing={1}
+            >
 
-            <TextField
-              placeholder="username"
-              label='username'
-              value={username}
-              onChange={(e) => setusername(e.target.value)}
-            />
-
-            <TextField
-              placeholder="roomname"
-              label='roomname'
-              value={roomname}
-              onChange={(e) => setroomname(e.target.value)}
-            />
-
-            {/* <Link to={`/msg_home/chat/${roomname}/${username}`} >
+              <TextField
+                placeholder="輸入username"
+                label='username'
+                value={username}
+                onChange={(e) => setusername(e.target.value)}
+              />
+              <br/>
+              <TextField
+                placeholder="輸入roomname"
+                label='roomname'
+                value={roomname}
+                onChange={(e) => setroomname(e.target.value)}
+              />
+              <br/>
+              {/* <Link to={`/msg_home/chat/${roomname}/${username}`} >
           <Button variant='contained' onClick={sendData}>Join</Button>
         </Link> */}
 
-            <Link to={`/msg_home/keys/${roomname}/${username}`} >
-              <Button variant='contained' onClick={sendData}>Join</Button>
-            </Link>
+              <Link to={`/msg_home/keys/${roomname}/${username}`}
+                style={{ textDecoration: 'none' }}>
+                <Button variant='contained' onClick={sendData}>加入</Button>
+              </Link>
 
-          </Stack>
-        </form>
+            </Stack>
+          </form>
+        </Box>
       </Box>
+
 
 
     </div>
