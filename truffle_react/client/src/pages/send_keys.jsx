@@ -10,6 +10,7 @@ import DialogPK from './component/dialogPK';
 import DialogPKSK from './component/dialogPKSK';
 import AlertPK from './component/alertPK';
 import AlertGK from './component/alertGK';
+import DialogDecryptGK from './component/dialogDecryptGK';
 
 function SendKeysPage({ socket }) {
 
@@ -55,6 +56,10 @@ function SendKeysPage({ socket }) {
     }
   }
 
+  const sendDecryptedGK = (input_decrypted_gk) => {
+
+  }
+
   return (
     <Stack
       direction='column'
@@ -69,12 +74,14 @@ function SendKeysPage({ socket }) {
       </div>
 
       <AlertPK receivePK={pk}/>
-      <AlertGK receiveGK={sk}/>
+      <AlertGK receiveGK={gk}/>
 
       <DialogPK handleSendPK={sendPK} />
 
       <DialogPKSK receivePK={pk} handleSendGK={sendGK} />
       <Button>解開基因鑰</Button>
+      <DialogDecryptGK receiveGK={gk} handleSendDecryptedGK={sendDecryptedGK}/>
+
     </Stack>
   )
 }

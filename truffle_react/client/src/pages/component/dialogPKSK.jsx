@@ -35,8 +35,6 @@ export default function DialogPKSK({receivePK, handleSendGK}) {
       // encrypt geneKey
       var encrypted_gene_key = encrypt.encrypt(gene_key);
 
-
-
       handleSendGK(encrypted_gene_key);
     }
   }
