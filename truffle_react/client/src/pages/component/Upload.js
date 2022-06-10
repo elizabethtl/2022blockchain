@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import {CssTextField} from '../style/style.js'
+import CssTextField from '../style/color_textfield.js'
+import BootstrapButton from '../style/color_button.js';
 
 
 const Upload = ({onType}) => {
@@ -70,7 +71,7 @@ const Upload = ({onType}) => {
                     />
                 </div>
                 <br />
-                <Button variant="contained" type='submit' size="large" >送出</Button>
+                <BootstrapButton variant="contained" type='submit' size="large" >送出</BootstrapButton>
             </Stack>
         </form>
     )

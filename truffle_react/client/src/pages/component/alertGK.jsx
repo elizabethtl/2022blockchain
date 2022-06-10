@@ -15,14 +15,14 @@ export default function AlertGK({ receiveGK }) {
   });
 
   if (receiveGK !== "") {
-    console.log("received gene key -" + receiveGK + "-");
+    console.log("received secret key -" + receiveGK + "-");
     return (
       <Alert severity='success'>
         you have received the gene key!
       </Alert>
     )
   } else {
-    console.log("did not recieve gene key");
+    console.log("did not recieve secret key");
     return (
       <Alert severity='warning'>
         yet to receive gene key!
